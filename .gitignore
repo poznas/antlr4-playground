@@ -1,0 +1,17 @@
+*~
+build
+target
+out
+.idea
+*.ipr
+*.iws
+*.iml
+.checkstyle
+.classpath
+.project
+.settings
+.metadata
+.factorypath
+.nbattrs
+*.log
+build.metadata
