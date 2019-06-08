@@ -28,6 +28,8 @@ public class HeaderListener extends BaseOutputListener {
       .ifPresent(result -> {
         if (!insideHeader) {
           newLineOutput(result);
+        } else {
+          newLineOutput();
         }
         insideHeader = !insideHeader;
       });

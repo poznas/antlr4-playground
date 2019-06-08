@@ -15,6 +15,10 @@ public class BaseOutputListener extends HTMLParserBaseListener {
   private final Supplier<Boolean> isOutputEnabled;
   private final Consumer<String> output;
 
+  void newLineOutput() {
+    output("\n");
+  }
+
   void newLineOutput(String string) {
     output("\n" + string);
   }

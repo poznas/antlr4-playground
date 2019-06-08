@@ -13,8 +13,9 @@ public class TextStyleListener extends BaseOutputListener {
   @Override
   public void exitHtmlTagName(HtmlTagNameContext ctx) {
     switch (ctx.TAG_NAME().getText()) {
-      case "b": output("__"); break;
-      case "i": output("*"); break;
+      case "b": case "strong": output("__"); break;
+      case "i": case "em": output("*"); break;
+      case "s": case "strike": output("~~"); break;
       default:
     }
   }

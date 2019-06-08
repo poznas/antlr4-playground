@@ -6,6 +6,7 @@ import com.agh.compilers.antlr4.HTMLParserBaseListener;
 import com.agh.compilers.listener.BaseOutputListener;
 import com.agh.compilers.listener.BodyListener;
 import com.agh.compilers.listener.HeaderListener;
+import com.agh.compilers.listener.ListListener;
 import com.agh.compilers.listener.TextListener;
 import com.agh.compilers.listener.TextStyleListener;
 import java.io.FileWriter;
@@ -28,7 +29,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 public class HtmlToMarkdown {
 
   private static final Stream<OutputListenerConstructor> listenerConstructors
-    = Stream.of(HeaderListener::new, TextStyleListener::new, TextListener::new);
+    = Stream.of(HeaderListener::new, TextStyleListener::new, TextListener::new, ListListener::new);
 
   private boolean enableOutput = false;
 
