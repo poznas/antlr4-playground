@@ -29,7 +29,7 @@ public class ImageListener extends AttributeReaderListener {
   @Override
   void onAttributeValue(String value) {
     if (insideImage) {
-      resourceOutput(format("![](%s) ", value));
+      output(format("![](%s) ", value));
     }
   }
 

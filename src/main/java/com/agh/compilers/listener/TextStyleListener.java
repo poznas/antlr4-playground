@@ -16,6 +16,7 @@ public class TextStyleListener extends BaseOutputListener {
       case "b": case "strong": output("__"); break;
       case "i": case "em": output("*"); break;
       case "s": case "strike": output("~~"); break;
+      case "mark": case "code": output("`"); break;
       default:
     }
   }

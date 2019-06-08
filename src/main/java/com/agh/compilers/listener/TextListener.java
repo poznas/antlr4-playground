@@ -28,6 +28,6 @@ public class TextListener extends BaseOutputListener {
   @Override
   public void exitHtmlTagName(HtmlTagNameContext ctx) {
     ofNullable(ctx.TAG_NAME().getText())
-      .filter(NEW_LINE_TARGETS::contains).ifPresent(br -> output("\n<br>\n"));
+      .filter(NEW_LINE_TARGETS::contains).ifPresent(br -> output("\n\n"));
   }
 }

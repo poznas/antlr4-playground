@@ -29,7 +29,7 @@ public class LinkListener extends AttributeReaderListener {
   public void exitHtmlTagName(HtmlTagNameContext ctx) {
     if ("a".equals(ctx.getText())) {
       if (!insideLink) {
-        resourceOutput("[");
+        output("[");
       } else {
         output(format("](%s) ", url));
         url = "";

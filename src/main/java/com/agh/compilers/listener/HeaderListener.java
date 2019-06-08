@@ -28,10 +28,8 @@ public class HeaderListener extends BaseOutputListener {
       .ifPresent(result -> {
         if (!insideHeader) {
           doubleNewLineOutput(result);
-          setEnableInlineResource(true);
         } else {
           newLineOutput();
-          setEnableInlineResource(false);
         }
         insideHeader = !insideHeader;
       });

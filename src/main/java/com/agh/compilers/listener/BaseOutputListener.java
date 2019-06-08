@@ -17,18 +17,6 @@ public abstract class BaseOutputListener extends HTMLParserBaseListener {
   private final Supplier<Boolean> isOutputEnabled;
   private final Consumer<String> output;
 
-  private Supplier<Boolean> inlineResourceEnabled = () -> false;
-  private Consumer<Boolean> inlineResourceEnabledSetter = b -> {};
-
-  void setEnableInlineResource(boolean enable) {
-    log.info("enable inline resource ? : " + enable);
-    inlineResourceEnabledSetter.accept(enable);
-  }
-
-  void resourceOutput(String resource) {
-    output((inlineResourceEnabled.get() ? "" : "\n\n") + resource);
-  }
-
   void newLineOutput() {
     output("\n");
   }

@@ -36,7 +36,6 @@ public class HtmlToMarkdown {
   );
 
   private boolean enableOutput = false;
-  private boolean inlineResourceEnabled = false;
 
 
   public static void main(String[] args) throws Exception {
@@ -56,8 +55,6 @@ public class HtmlToMarkdown {
     try (var output = new PrintWriter(new FileWriter("output.md"), true)) {
 
       listenerConstructors.map(c -> c.apply(this::isEnableOutput, output::print))
-        .peek(l -> l.setInlineResourceEnabledSetter(this::setInlineResourceEnabled))
-        .peek(l -> l.setInlineResourceEnabled(this::isInlineResourceEnabled))
         .forEach(parser::addParseListener);
 
       var walker = new ParseTreeWalker();

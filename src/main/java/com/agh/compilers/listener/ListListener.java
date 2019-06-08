@@ -34,13 +34,9 @@ public class ListListener extends BaseOutputListener {
         .ifPresent(listState -> {
             if (insideItem) {
               listStates.push(listState);
-              setEnableInlineResource(true);
               log.info("open list, states: " + listStates);
             } else {
               listStates.pop();
-              if (listStates.isEmpty()) {
-                setEnableInlineResource(false);
-              }
               log.info("close list, states: " + listStates);
             }
             insideItem = !insideItem;
