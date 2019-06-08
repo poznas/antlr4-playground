@@ -6,6 +6,8 @@ import com.agh.compilers.antlr4.HTMLParserBaseListener;
 import com.agh.compilers.listener.BaseOutputListener;
 import com.agh.compilers.listener.BodyListener;
 import com.agh.compilers.listener.HeaderListener;
+import com.agh.compilers.listener.ImageListener;
+import com.agh.compilers.listener.LinkListener;
 import com.agh.compilers.listener.ListListener;
 import com.agh.compilers.listener.TextListener;
 import com.agh.compilers.listener.TextStyleListener;
@@ -28,10 +30,13 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 @Getter
 public class HtmlToMarkdown {
 
-  private static final Stream<OutputListenerConstructor> listenerConstructors
-    = Stream.of(HeaderListener::new, TextStyleListener::new, TextListener::new, ListListener::new);
+  private static final Stream<OutputListenerConstructor> listenerConstructors = Stream.of(
+    HeaderListener::new, TextStyleListener::new, TextListener::new,
+    ListListener::new, LinkListener::new, ImageListener::new
+  );
 
   private boolean enableOutput = false;
+  private boolean inlineResourceEnabled = false;
 
 
   public static void main(String[] args) throws Exception {
@@ -51,6 +56,8 @@ public class HtmlToMarkdown {
     try (var output = new PrintWriter(new FileWriter("output.md"), true)) {
 
       listenerConstructors.map(c -> c.apply(this::isEnableOutput, output::print))
+        .peek(l -> l.setInlineResourceEnabledSetter(this::setInlineResourceEnabled))
+        .peek(l -> l.setInlineResourceEnabled(this::isInlineResourceEnabled))
         .forEach(parser::addParseListener);
 
       var walker = new ParseTreeWalker();

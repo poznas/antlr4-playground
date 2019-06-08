@@ -27,9 +27,11 @@ public class HeaderListener extends BaseOutputListener {
       .map(level -> repeat('#', level) + " ")
       .ifPresent(result -> {
         if (!insideHeader) {
-          newLineOutput(result);
+          doubleNewLineOutput(result);
+          setEnableInlineResource(true);
         } else {
           newLineOutput();
+          setEnableInlineResource(false);
         }
         insideHeader = !insideHeader;
       });

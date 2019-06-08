@@ -14,7 +14,7 @@ import lombok.extern.java.Log;
 @Log
 public class ListListener extends BaseOutputListener {
 
-  private static final Map<String, String> LIST_OPEN_TAG_MAP = Map.of("ul", "* ", "ol", "1. ");
+  private static final Map<String, String> LIST_TAG_MAP = Map.of("ul", "* ", "ol", "1. ");
 
   private Deque<String> listStates = new LinkedList<>();
 
@@ -30,13 +30,17 @@ public class ListListener extends BaseOutputListener {
     String tag = ctx.getText();
 
     if (tag.matches("^((ul)|(ol))$")) {
-      of(tag).map(LIST_OPEN_TAG_MAP::get)
+      of(tag).map(LIST_TAG_MAP::get)
         .ifPresent(listState -> {
             if (insideItem) {
               listStates.push(listState);
+              setEnableInlineResource(true);
               log.info("open list, states: " + listStates);
             } else {
               listStates.pop();
+              if (listStates.isEmpty()) {
+                setEnableInlineResource(false);
+              }
               log.info("close list, states: " + listStates);
             }
             insideItem = !insideItem;

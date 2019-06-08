@@ -21,7 +21,7 @@ public class TextListener extends BaseOutputListener {
   public void exitHtmlChardata(HtmlChardataContext ctx) {
     ofNullable(ctx.getText())
       .filter(StringUtils::isNotBlank)
-      .map(s -> s.replaceAll("\\s+$",""))
+      .map(s -> s.replaceAll("(\\n)|(\\r\\n)",""))
       .ifPresent(this::output);
   }
 
