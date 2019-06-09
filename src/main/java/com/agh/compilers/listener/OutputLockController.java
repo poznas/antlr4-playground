@@ -8,7 +8,7 @@ import lombok.extern.java.Log;
 
 @Log
 @RequiredArgsConstructor
-public class BodyListener extends HTMLParserBaseListener {
+public class OutputLockController extends HTMLParserBaseListener {
 
   private final Consumer<Boolean> setEnableOutput;
   private boolean enabled;

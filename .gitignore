@@ -16,3 +16,4 @@ out
 *.log
 build.metadata
 output.md
+dependency-reduced-pom.xml

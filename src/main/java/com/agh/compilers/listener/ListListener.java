@@ -37,6 +37,9 @@ public class ListListener extends BaseOutputListener {
               log.info("open list, states: " + listStates);
             } else {
               listStates.pop();
+              if (listStates.isEmpty()) {
+                doubleNewLineOutput();
+              }
               log.info("close list, states: " + listStates);
             }
             insideItem = !insideItem;

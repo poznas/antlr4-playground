@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class TextListener extends BaseOutputListener {
 
-  private static final Set<String> NEW_LINE_TARGETS = Set.of("br", "p");
+  private static final Set<String> NEW_LINE_TARGETS = Set.of("br", "p", "header");
 
   public TextListener(Supplier<Boolean> isOutputEnabled, Consumer<String> output) {
     super(isOutputEnabled, output);

@@ -17,12 +17,16 @@ public abstract class BaseOutputListener extends HTMLParserBaseListener {
   private final Supplier<Boolean> isOutputEnabled;
   private final Consumer<String> output;
 
-  void newLineOutput() {
-    output("\n");
+  void doubleNewLineOutput() {
+    doubleNewLineOutput("");
   }
 
   void doubleNewLineOutput(String string) {
     newLineOutput("\n" + string);
+  }
+
+  void newLineOutput() {
+    output("\n");
   }
 
   void newLineOutput(String string) {
